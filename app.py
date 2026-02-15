@@ -3,19 +3,33 @@ import tensorflow as tf
 import pickle
 import numpy as np
 from keras.preprocessing.sequence import pad_sequences
+import os
+import urllib.request
 
 # 1. Page Config
 st.set_page_config(page_title="Neural Movie Predictor", page_icon="🎬")
 
 @st.cache_resource
-def load_assets():
-    # Load your trained LSTM and the Tokenizer
-    model = tf.keras.models.load_model('movie_lstm.h5')
-    with open('tokenizer.pkl', 'rb') as handle:
+def download_and_load_assets():
+    """Downloads model from GitHub Release if missing and loads assets."""
+    model_url = "https://github.com/vanshjain212/Next-Word-Prediction/releases/download/v1.0.0/movie_lstm.h5"
+    model_path = "movie_lstm.h5"
+    tokenizer_path = "tokenizer.pkl"
+    
+    # Download model weights if not present (Important for Cloud Deployment)
+    if not os.path.exists(model_path):
+        with st.spinner("Downloading model weights from GitHub Releases..."):
+            urllib.request.urlretrieve(model_url, model_path)
+    
+    # Load Model
+    model = tf.keras.models.load_model(model_path)
+    
+    # Load Tokenizer
+    with open(tokenizer_path, 'rb') as handle:
         tokenizer = pickle.load(handle)
-    return model, tokenizer
+    return model,tokenizer
 
-model, tokenizer = load_assets()
+model, tokenizer = download_and_load_assets()
 
 # 2. UI Elements
 st.title("🎬 Neural Next-Word Predictor")
