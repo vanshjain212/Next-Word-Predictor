@@ -16,7 +16,7 @@ def download_and_load_assets():
     model_path = "movie_lstm.h5"
     tokenizer_path = "tokenizer.pkl"
     
-    # Download model weights if not present (Important for Cloud Deployment)
+    # Downloading model weights 
     if not os.path.exists(model_path):
         with st.spinner("Downloading model weights from GitHub Releases..."):
             urllib.request.urlretrieve(model_url, model_path)
@@ -39,7 +39,7 @@ Type a sentence below to see what it suggests next!
 """)
 
 seed_text = st.text_input("Enter your movie line:", "I want to")
-max_seq_len = 50# Use the same as your training
+max_seq_len = 50 #average len to improve computational speed
 
 if seed_text:
     # 3. Inference Logic
@@ -62,4 +62,5 @@ if seed_text:
                 with cols[i]:
                     st.metric(label=f"Option {i+1}", value=word, delta=f"{confidence:.2f}%")
                 break
+
 
