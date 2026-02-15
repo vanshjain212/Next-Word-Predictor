@@ -71,7 +71,7 @@ I trained on a strategic subset of 120,000 dialogue pairs rather than the full 3
 ## 📦 Model Weights
 Due to GitHub's file size limits for standard web uploads, the trained LSTM weights (34 MB) are hosted in the project's **Releases** section.
 
-**[Download movie_lstm.h5]((https://github.com/vanshjain212/Next-Word-Predictor/releases/download/v.1.0.0/movie_lstm.h5))**
+**[Download movie_lstm.h5](https://github.com/vanshjain212/Next-Word-Predictor/releases/download/v1.0.0/movie_lstm.h5)**
 
 > **Note:** If you are running this app locally, place the downloaded `.h5` file in the root directory before running `streamlit run app.py`.
 
