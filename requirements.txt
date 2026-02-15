@@ -1,0 +1,5 @@
+streamlit
+tensorflow
+numpy
+pickle-mixin
+streamlit-smart-text-input
