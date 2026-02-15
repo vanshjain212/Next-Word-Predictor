@@ -12,7 +12,7 @@ st.set_page_config(page_title="Neural Movie Predictor", page_icon="🎬")
 @st.cache_resource
 def download_and_load_assets():
     """Downloads model from GitHub Release if missing and loads assets."""
-    model_url = "https://github.com/vanshjain212/Next-Word-Prediction/releases/download/v1.0.0/movie_lstm.h5"
+    model_url = "https://github.com/vanshjain212/Next-Word-Predictor/releases/download/v1.0.0/movie_lstm.h5"
     model_path = "movie_lstm.h5"
     tokenizer_path = "tokenizer.pkl"
     
@@ -62,3 +62,4 @@ if seed_text:
                 with cols[i]:
                     st.metric(label=f"Option {i+1}", value=word, delta=f"{confidence:.2f}%")
                 break
+
