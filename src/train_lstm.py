@@ -30,7 +30,7 @@ print(f"LSTM training on {len(data_subset)} rows.")
 with mlflow.start_run(run_name="LSTM_Training"):
     # Log params to MLflow
     mlflow.log_params(p)
-
+    mlflow.tensorflow.autolog()
     # 4. Tokenization [cite: 798]
     tok = Tokenizer(num_words=p["vocab_size"], oov_token="<OOV>")
     tok.fit_on_texts(data_subset)
