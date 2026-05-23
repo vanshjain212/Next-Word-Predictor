@@ -20,5 +20,3 @@ stages:
     outs:
       - models/movie_lstm.h5
       - models/tokenizer.pkl
-
-  # ... (Keep train_transformer and evaluate exactly as they were)
