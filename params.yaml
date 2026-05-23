@@ -1,0 +1,24 @@
+base:
+  data_path: data/movie_lines.txt
+  random_state: 42
+
+prepare:
+  subset_size: "all"
+
+train_lstm:
+  subset_size: 120000
+  vocab_size: 15000
+  max_seq_len: 50
+  embedding_dim: 100
+  glove_path: data/glove.6B.100d.txt
+  lstm_units_1: 256
+  lstm_units_2: 128
+  batch_size: 128
+  epochs: 100
+  patience: 5
+
+train_transformer:
+  model_name: distilgpt2
+  test_size: 0.2
+  epochs: 5
+  learning_rate: 2e-5

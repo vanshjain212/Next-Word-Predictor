@@ -1,0 +1,58 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: data/movie_lines.txt
+      hash: md5
+      md5: 5090b93272d88d91681710cb78ae8e2d
+      size: 34641919
+    - path: src/prepare.py
+      hash: md5
+      md5: 99d62ab7cc1e46a29780d009cfa29cc4
+      size: 626
+    params:
+      params.yaml:
+        base.data_path: data/movie_lines.txt
+    outs:
+    - path: data/clean_dialogues.csv
+      hash: md5
+      md5: 02b339bc41133798ea9740f2ebf04772
+      size: 17370989
+  train_lstm:
+    cmd: python src/train_lstm.py
+    deps:
+    - path: data/clean_dialogues.csv
+      hash: md5
+      md5: 02b339bc41133798ea9740f2ebf04772
+      size: 17370989
+    - path: data/glove.6B.100d.txt
+      hash: md5
+      md5: dd7f3ad906768166883176d69cc028de
+      size: 347116733
+    - path: src/train_lstm.py
+      hash: md5
+      md5: 8c33fba7a2cc3df83427071855071ae7
+      size: 3646
+    params:
+      params.yaml:
+        train_lstm:
+          subset_size: 120000
+          vocab_size: 15000
+          max_seq_len: 50
+          embedding_dim: 100
+          glove_path: data/glove.6B.100d.txt
+          lstm_units_1: 256
+          lstm_units_2: 128
+          batch_size: 128
+          epochs: 100
+          patience: 5
+    outs:
+    - path: models/movie_lstm.h5
+      hash: md5
+      md5: 83b3a307f2510475e45f0d01cb59007b
+      size: 36015272
+    - path: models/tokenizer.pkl
+      hash: md5
+      md5: e67bc51ba4ac1c4cad71fc87dfc609fc
+      size: 1369913
