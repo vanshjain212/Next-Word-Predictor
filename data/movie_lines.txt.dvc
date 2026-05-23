@@ -1,0 +1,5 @@
+outs:
+- md5: 5090b93272d88d91681710cb78ae8e2d
+  size: 34641919
+  hash: md5
+  path: movie_lines.txt
