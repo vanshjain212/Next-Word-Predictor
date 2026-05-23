@@ -1,0 +1,21 @@
+base:
+  data_path: data/movie_lines.txt
+  random_state: 42
+
+train_lstm:
+  subset_size: 120000    # LSTM only gets 120k lines!
+  vocab_size: 15000      # Matched your notebook
+  max_seq_len: 50        # Matched your notebook
+  embedding_dim: 100
+  glove_path: data/glove.6B.100d.txt
+  lstm_units_1: 256      # Matched your notebook
+  lstm_units_2: 128      # Matched your notebook
+  batch_size: 128        # Matched your notebook
+  epochs: 100
+  patience: 5
+
+train_transformer:
+  model_name: distilgpt2
+  test_size: 0.2         # Matched your notebook
+  epochs: 5              # Matched your notebook
+  learning_rate: 2e-5

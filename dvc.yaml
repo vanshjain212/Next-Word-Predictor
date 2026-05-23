@@ -1,0 +1,24 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+      - src/prepare.py
+      - data/movie_lines.txt
+    params:
+      - base.data_path
+    outs:
+      - data/clean_dialogues.csv
+
+  train_lstm:
+    cmd: python src/train_lstm.py
+    deps:
+      - src/train_lstm.py
+      - data/clean_dialogues.csv
+      - data/glove.6B.100d.txt
+    params:
+      - train_lstm
+    outs:
+      - models/movie_lstm.h5
+      - models/tokenizer.pkl
+
+  # ... (Keep train_transformer and evaluate exactly as they were)
