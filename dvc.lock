@@ -56,3 +56,27 @@ stages:
       hash: md5
       md5: e67bc51ba4ac1c4cad71fc87dfc609fc
       size: 1369913
+  train_transformer:
+    cmd: python src/train_transformer.py
+    deps:
+    - path: data/clean_dialogues.csv
+      hash: md5
+      md5: 02b339bc41133798ea9740f2ebf04772
+      size: 17370989
+    - path: src/train_transformer.py
+      hash: md5
+      md5: 3b26acc9dd60921b24cd9a2f8bf8b970
+      size: 2594
+    params:
+      params.yaml:
+        train_transformer:
+          model_name: distilgpt2
+          test_size: 0.2
+          epochs: 5
+          learning_rate: 2e-05
+    outs:
+    - path: models/transformer_weights/
+      hash: md5
+      md5: 2a1192cb9d8611a728555242c790e3c2.dir
+      size: 331222380
+      nfiles: 6

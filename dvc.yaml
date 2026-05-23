@@ -20,3 +20,13 @@ stages:
     outs:
       - models/movie_lstm.h5
       - models/tokenizer.pkl
+
+  train_transformer:
+    cmd: python src/train_transformer.py
+    deps:
+      - src/train_transformer.py
+      - data/clean_dialogues.csv
+    params:
+      - train_transformer
+    outs:
+      - models/transformer_weights/
