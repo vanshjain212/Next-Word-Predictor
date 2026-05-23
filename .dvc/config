@@ -1,4 +1,4 @@
 [core]
     remote = origin
 ['remote "origin"']
-    url = https://dagshub.com/vanshjain212/Next-Word-Predictor.dvc
+    url = https://vanshjain212:4f5db291761c78aad9bb03577a96ad4a2b520300@dagshub.com/vanshjain212/Next-Word-Predictor.dvc

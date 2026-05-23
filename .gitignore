@@ -17,4 +17,4 @@ models/transformer_checkpoints/
 
 # Allow DVC tracking files
 !*.dvc
-!.gitignore
+!.gitignoremodels/
