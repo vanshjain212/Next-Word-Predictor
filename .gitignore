@@ -1,4 +1,20 @@
-venv/
+# Python environment
 __pycache__/
-.DS_Store
-*.ipynb_checkpoints
+*.pyc
+.env
+venv/
+env/
+.ipynb_checkpoints/
+
+# Data and Models (Tracked by DVC)
+data/movie_lines.txt
+data/glove.6B.100d.txt
+data/clean_dialogues.csv
+models/movie_lstm.h5
+models/tokenizer.pkl
+models/transformer_weights/
+models/transformer_checkpoints/
+
+# Allow DVC tracking files
+!*.dvc
+!.gitignore

@@ -1,5 +1,18 @@
-streamlit
-tensorflow
-numpy
-pickle-mixin
-streamlit-smart-text-input
+# Deep Learning & NLP
+tensorflow==2.15.0
+torch==2.2.1
+transformers==4.38.2
+datasets==2.18.0
+
+# Data Manipulation
+numpy==1.26.4
+pandas==2.2.1
+
+# MLOps Infrastructure
+dvc[dags]==3.48.4
+dagshub==0.3.25
+mlflow==2.11.1
+PyYAML==6.0.1
+
+# Web App
+streamlit==1.32.0
