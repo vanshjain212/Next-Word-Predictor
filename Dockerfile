@@ -32,7 +32,10 @@ EXPOSE 7860
 
 # 7. Authenticate DVC, pull weights, and launch the app
 # The variables starting with $ will be securely provided by Hugging Face Secrets
-CMD dvc remote modify origin --local auth basic && \
+# 7. Authenticate DVC, pull weights, and launch the app
+# The variables starting with $ will be securely provided by Hugging Face Secrets
+CMD git init && \
+    dvc remote modify origin --local auth basic && \
     dvc remote modify origin --local user $DAGSHUB_USERNAME && \
     dvc remote modify origin --local password $DAGSHUB_TOKEN && \
     dvc pull && \
