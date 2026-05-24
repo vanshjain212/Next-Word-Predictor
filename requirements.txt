@@ -16,3 +16,4 @@ PyYAML==6.0.1
 pathspec<1.0.0
 # Web App
 streamlit==1.32.0
+tf-keras
