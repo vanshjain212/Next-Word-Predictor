@@ -87,10 +87,9 @@ def load_models():
     device = 0 if torch.cuda.is_available() else -1
     transformer_pipe = pipeline(
         "text-generation",
-        model=str(transformer_dir),
-        tokenizer=str(transformer_dir),
+        model=str(transformer_dir),  # Keep loading your custom fine-tuned weights locally
+        tokenizer="gpt2",            # Force a fresh, clean official tokenizer from the web
         framework="pt",
-        from_tf=True,  # <-- This tells PyTorch to dynamically translate the TensorFlow weights!
         device=device
     )
     
