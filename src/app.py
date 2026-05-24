@@ -89,6 +89,8 @@ def load_models():
         "text-generation",
         model=str(transformer_dir),
         tokenizer=str(transformer_dir),
+        framework="pt",
+        from_tf=True,  # <-- This tells PyTorch to dynamically translate the TensorFlow weights!
         device=device
     )
     
