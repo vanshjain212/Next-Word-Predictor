@@ -9,10 +9,19 @@ from pathlib import Path
 from transformers import pipeline
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
-# --- Keras 3 Bug Fix Interceptor ---
+# --- Keras 3 Bug Fix Interceptors ---
 class SafeEmbedding(tf.keras.layers.Embedding):
     def __init__(self, *args, **kwargs):
-        # Silently remove the bugged configuration before Keras crashes
+        kwargs.pop('quantization_config', None)
+        super().__init__(*args, **kwargs)
+
+class SafeDense(tf.keras.layers.Dense):
+    def __init__(self, *args, **kwargs):
+        kwargs.pop('quantization_config', None)
+        super().__init__(*args, **kwargs)
+
+class SafeLSTM(tf.keras.layers.LSTM):
+    def __init__(self, *args, **kwargs):
         kwargs.pop('quantization_config', None)
         super().__init__(*args, **kwargs)
         
@@ -66,7 +75,11 @@ def load_models():
 
     lstm_model = tf.keras.models.load_model(
         str(lstm_path), 
-        custom_objects={'Embedding': SafeEmbedding}
+        custom_objects={
+            'Embedding': SafeEmbedding,
+            'Dense': SafeDense,
+            'LSTM': SafeLSTM
+        }
     )
     with open(str(tokenizer_path), 'rb') as handle:
         lstm_tokenizer = pickle.load(handle)
