@@ -12,7 +12,16 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 4. Copy and install Python dependencies
+# Copy the requirements file
 COPY requirements.txt .
+
+# Layer 1: Install PyTorch, save the layer, and clear RAM
+RUN pip install --no-cache-dir torch==2.2.1
+
+# Layer 2: Install TensorFlow, save the layer, and clear RAM
+RUN pip install --no-cache-dir tensorflow>=2.16.0
+
+# Layer 3: Install the rest (it skips Torch/TF since they are done)
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 5. Copy the rest of your application code
