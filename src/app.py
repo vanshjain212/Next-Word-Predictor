@@ -9,6 +9,13 @@ from pathlib import Path
 from transformers import pipeline
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 
+# --- Keras 3 Bug Fix Interceptor ---
+class SafeEmbedding(tf.keras.layers.Embedding):
+    def __init__(self, *args, **kwargs):
+        # Silently remove the bugged configuration before Keras crashes
+        kwargs.pop('quantization_config', None)
+        super().__init__(*args, **kwargs)
+        
 # --- 1. Page Config & Custom Styling ---
 st.set_page_config(page_title="Sequence Model Benchmarking", page_icon="🔬", layout="wide")
 
@@ -57,7 +64,10 @@ def load_models():
         st.error(f"Missing models! Please run `dvc pull` to download weights to {MODEL_DIR}")
         st.stop()
 
-    lstm_model = tf.keras.models.load_model(str(lstm_path))
+    lstm_model = tf.keras.models.load_model(
+        str(lstm_path), 
+        custom_objects={'Embedding': SafeEmbedding}
+    )
     with open(str(tokenizer_path), 'rb') as handle:
         lstm_tokenizer = pickle.load(handle)
         

@@ -1,5 +1,5 @@
 # Deep Learning & NLP
-tensorflow==2.15.0
+tensorflow>=2.16.0
 torch==2.2.1
 transformers==4.38.2
 datasets==2.18.0

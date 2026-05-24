@@ -19,7 +19,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir torch==2.2.1
 
 # Layer 2: Install TensorFlow, save the layer, and clear RAM
-RUN pip install --no-cache-dir tensorflow==2.15.0
+RUN pip install --no-cache-dir tensorflow>=2.16.0
 
 # Layer 3: Install the rest (it skips Torch/TF since they are done)
 RUN pip install --no-cache-dir -r requirements.txt
